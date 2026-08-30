@@ -1,0 +1,753 @@
+﻿<!DOCTYPE html>
+<html lang="en" style="">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>KCYM - Ignite & Unite</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#2e3132",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e7e8e9",
+                        "surface": "#f8f9fa",
+                        "on-secondary-container": "#6e5c00",
+                        "secondary-fixed-dim": "#e9c400",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#93000d",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#e7bdb8",
+                        "surface-container-low": "#f3f4f5",
+                        "secondary": "#705d00",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "on-surface-variant": "#5d3f3c",
+                        "on-secondary-fixed": "#221b00",
+                        "surface-bright": "#f8f9fa",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#410002",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e1e3e4",
+                        "primary-container": "#e31e24",
+                        "inverse-primary": "#ffb4ab",
+                        "on-secondary-fixed-variant": "#544600",
+                        "on-surface": "#191c1d",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#fffbfb",
+                        "secondary-container": "#fcd400",
+                        "on-background": "#191c1d",
+                        "on-primary-container": "#fffafa",
+                        "surface-container-highest": "#e1e3e4",
+                        "tertiary-container": "#757474",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "background": "#f8f9fa",
+                        "primary": "#ba0013",
+                        "surface-tint": "#c00014",
+                        "secondary-fixed": "#ffe16d",
+                        "surface-dim": "#d9dadb",
+                        "tertiary": "#5c5b5b",
+                        "tertiary-fixed": "#e5e2e1",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-container": "#edeeef",
+                        "outline": "#926f6b",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "primary-fixed": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "md": "16px",
+                        "container-max": "1200px",
+                        "xl": "40px",
+                        "unit": "8px",
+                        "sm": "8px",
+                        "xxl": "64px",
+                        "lg": "24px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "label-sm": ["Inter"],
+                        "headline-xl": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "label-md": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Parish infinite-scroll marquee Ã¢â€â‚¬Ã¢â€â‚¬ */
+        .parish-marquee-wrap {
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            gap: 24px;
+            /* Soft fade masks on left & right edges */
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+            mask-image:         linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+        }
+        .parish-marquee-track {
+            display: flex;
+            gap: 24px;
+            padding: 8px 0 16px;
+            min-width: 100%;
+            flex-shrink: 0;
+            animation: parish-scroll 55s linear infinite;
+        }
+        /* Pause on hover for usability */
+        .parish-marquee-wrap:hover .parish-marquee-track {
+            animation-play-state: paused;
+        }
+        /* Each card = exactly 1/3 viewport width minus gaps Ã¢â€ â€™ 3 visible at a time */
+        .parish-card {
+            flex: none;
+            width: calc(33.33vw - 22px);
+            min-width: 260px;
+            max-width: 420px;
+        }
+        @keyframes parish-scroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(calc(-100% - 24px)); }
+        }
+
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Parish card Visit Page button animation Ã¢â€â‚¬Ã¢â€â‚¬ */
+        .parish-visit-btn {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, background-color 0.22s ease, color 0.22s ease;
+        }
+        /* Shimmer sweep */
+        .parish-visit-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -110%;
+            width: 80%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+            transform: skewX(-20deg);
+            transition: left 0.5s ease;
+        }
+        .parish-visit-btn:hover::after {
+            left: 130%;
+        }
+        .parish-visit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+        }
+        .parish-visit-btn:active {
+            transform: translateY(0) scale(0.97);
+            box-shadow: none;
+        }
+
+        /* Ã¢â€â‚¬Ã¢â€â‚¬ Float up animation Ã¢â€â‚¬Ã¢â€â‚¬ */
+        .animate-float-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .animate-float-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline sticky top-0 z-50 w-full transition-colors duration-200">
+<div class="flex justify-between items-center w-full px-lg md:px-xxl max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-sm">
+<a href="index.html">
+<img alt="KCYM Logo" class="h-16 w-auto object-contain transition-transform hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVZYTvIplMtqBvP05EgQDQsEi0Dl-pK7c8FjyP9lzlc5l1pJBITDckMwSQ_o0imt7v8e_MSohMq4qJLg6AmnyamF7j3AayYZOCNSldTdZdFKda0G338DaTrM_zlXxKpKZqoGk1mbPBAzBWry64VPa_1-gfXSMIOcJRTOZuhWd87Vq5TGORZ8eZp-XRJ1tPIWIZ_wEIldY_wVIYgyLDKwUAl1qsbRb8xpDMyegYqbiaFcO1oJGODtoDgs48xFgWP7B6YDE">
+</a>
+</div>
+<nav class="hidden md:flex items-center gap-lg h-full">
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200 h-full flex items-center" href="index.html#about">About</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200 h-full flex items-center" href="index.html#parishes">Parishes</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200 h-full flex items-center" href="events.html">Activities</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200 h-full flex items-center" href="index.html#connect">Connect</a>
+</nav>
+<div class="flex items-center gap-md">
+
+<button class="md:hidden text-on-surface p-sm">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative pt-xxl pb-xl px-lg md:px-xxl flex flex-col items-center justify-center text-center overflow-hidden bg-surface-container-lowest animate-float-up">
+<div class="absolute inset-0 z-0 opacity-5 bg-[radial-gradient(circle_at_center,_var(--tw-colors-primary-container)_0%,_transparent_70%)]"></div>
+<div class="relative z-10 max-w-3xl mx-auto flex flex-col items-center gap-lg">
+<div class="flex items-center justify-center gap-lg mb-md">
+<img alt="KCYM Logo" class="w-32 h-32 object-contain drop-shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVZYTvIplMtqBvP05EgQDQsEi0Dl-pK7c8FjyP9lzlc5l1pJBITDckMwSQ_o0imt7v8e_MSohMq4qJLg6AmnyamF7j3AayYZOCNSldTdZdFKda0G338DaTrM_zlXxKpKZqoGk1mbPBAzBWry64VPa_1-gfXSMIOcJRTOZuhWd87Vq5TGORZ8eZp-XRJ1tPIWIZ_wEIldY_wVIYgyLDKwUAl1qsbRb8xpDMyegYqbiaFcO1oJGODtoDgs48xFgWP7B6YDE">
+<div class="h-24 w-px bg-outline-variant mx-sm"></div>
+<img alt="St. Thomas More" class="w-32 h-32 object-cover rounded-full shadow-sm border-4 border-surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAuI_yMMyUnt5ijgu078xRIHA9xc4iBOJIggeZdHu9Tw92Pz0oHswNRjFVa6xix01TeoE_1K_n3rh8yTEgmuik_dUXpDbiy_GA06HbL0IRtuQgP922XIcDAgfwGpn-P3J_H0K1ONSAYkh0vipQSg-U72nRevmYt1DXZHTVjkDK_jJPzdRB0jejUc3PoZ9TtMhI8InHNBWlXd7CT_CDGCu2b0H8fXVE34UGrizaWLyDm7tSQr1jUGCk7tc7zbA-LbFwjIQ">
+</div>
+<h1 class="font-headline-xl text-headline-lg-mobile md:text-headline-xl text-primary mb-sm">KCYM Paingottoor Forane</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                    Empowering the youth of Kerala through faith, service, and community fellowship. Join us in making a difference today.
+                </p>
+
+</div>
+</section>
+<!-- Section 1: About KCYM -->
+<section class="py-xxl px-lg md:px-xxl bg-surface animate-float-up" id="about">
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-xxl items-center">
+<div class="order-2 md:order-1 flex flex-col gap-md">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">About KCYM</h2>
+<div class="w-16 h-1 bg-secondary-container rounded-full mb-sm"></div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        The Kerala Catholic Youth Movement (KCYM) is the official state and regional organization under the KCBC. It is a vibrant community of young people dedicated to spiritual growth, social action, and community building.
+                    </p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Founded on the principles of Christ's teachings, we strive to be the salt of the earth and the light of the world, engaging in activities that promote justice, peace, and love.
+                    </p>
+
+</div>
+<div class="order-1 md:order-2 rounded-2xl overflow-hidden shadow-sm border border-outline-variant relative h-80">
+<img class="w-full h-full object-cover" data-alt="A diverse group of energetic young adults engaging in a community service project, planting trees in a sunlit park. They are smiling, wearing casual modern clothing with subtle red and yellow accents. The scene is bright, optimistic, and bathed in warm natural light, capturing a spirit of unity and purpose." src="https://images.unsplash.com/photo-1593113580327-024523d4e7d4?q=80&w=2940&auto=format&fit=crop">
+</div>
+</div>
+</section>
+<!-- Section 2: KCYM Paingottoor -->
+<section class="py-xxl px-lg md:px-xxl bg-surface-container-low animate-float-up">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row gap-xl items-center">
+<div class="w-full md:w-1/3 aspect-square rounded-xl overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A high-quality architectural photo of a beautiful, traditional Kerala-style Catholic church bathed in golden hour sunlight. The structure features distinctive sloping roofs and a prominent cross, surrounded by lush green palm trees. The mood is serene and welcoming, reflecting a strong community heritage." src="https://images.unsplash.com/photo-1548509925-0e6d678d4615?q=80&w=2940&auto=format&fit=crop">
+</div>
+<div class="w-full md:w-2/3 flex flex-col gap-md">
+<div class="flex items-center gap-sm text-secondary">
+<span class="material-symbols-outlined">location_on</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">OUR FORANE</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">KCYM Paingottoor</h2>
+<p class="font-body-md text-body-md text-on-surface-variant"><p class=""><strong>Our Forane, Paingottoor, is a vibrant community of young people united in faith, fellowship, and purpose. As part of the KCYM family, we come together to grow spiritually, lead with conviction, serve our community, and create a meaningful impact through our initiatives. Carrying forward the spirit and vision of KCYM, we strive to be a generation rooted in faith and rising for change.</strong></p></p>
+
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Our Activities (Bento Grid) -->
+<section class="py-xxl px-lg md:px-xxl bg-surface animate-float-up" id="leadership">
+  <div class="max-w-container-max mx-auto">
+    <div class="text-center mb-xl">
+      <h2 class="font-headline-lg text-headline-lg text-on-surface mb-sm">Forane Leadership</h2>
+      <div class="w-16 h-1 bg-secondary-container rounded-full mx-auto"></div>
+    </div>
+
+    <div class="flex flex-col gap-lg">
+      <!-- Row 1: 4 Members -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-lg">
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm flex flex-col items-center text-center">
+          <div class="w-40 h-40 bg-surface-container-high rounded-xl mb-md flex items-center justify-center overflow-hidden">
+            <span class="material-symbols-outlined text-on-surface-variant text-5xl">person</span>
+          </div>
+          <h3 class="font-label-md text-label-md font-bold text-on-surface">Director</h3>
+          <p class="text-xs text-on-surface-variant">Rev. Fr. Director</p>
+        </div>
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm flex flex-col items-center text-center">
+          <div class="w-40 h-40 bg-surface-container-high rounded-xl mb-md flex items-center justify-center overflow-hidden">
+            <span class="material-symbols-outlined text-on-surface-variant text-5xl">person</span>
+          </div>
+          <h3 class="font-label-md text-label-md font-bold text-on-surface">Asst Director</h3>
+          <p class="text-xs text-on-surface-variant">Asst. Director</p>
+        </div>
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm flex flex-col items-center text-center">
+          <div class="w-40 h-40 bg-surface-container-high rounded-xl mb-md flex items-center justify-center overflow-hidden">
+            <span class="material-symbols-outlined text-on-surface-variant text-5xl">person</span>
+          </div>
+          <h3 class="font-label-md text-label-md font-bold text-on-surface">President</h3>
+          <p class="text-xs text-on-surface-variant">Forane President</p>
+        </div>
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm flex flex-col items-center text-center">
+          <div class="w-40 h-40 bg-surface-container-high rounded-xl mb-md flex items-center justify-center overflow-hidden">
+            <span class="material-symbols-outlined text-on-surface-variant text-5xl">person</span>
+          </div>
+          <h3 class="font-label-md text-label-md font-bold text-on-surface">Animator</h3>
+          <p class="text-xs text-on-surface-variant">Forane Animator</p>
+        </div>
+      </div>
+
+      <!-- Row 2: 4 Members -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-lg">
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm flex flex-col items-center text-center">
+          <div class="w-40 h-40 bg-surface-container-high rounded-xl mb-md flex items-center justify-center overflow-hidden">
+            <span class="material-symbols-outlined text-on-surface-variant text-5xl">person</span>
+          </div>
+          <h4 class="font-label-md text-label-md font-bold">Secretary</h4>
+          <p class="text-xs text-on-surface-variant">Member Name</p>
+        </div>
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm flex flex-col items-center text-center">
+          <div class="w-40 h-40 bg-surface-container-high rounded-xl mb-md flex items-center justify-center overflow-hidden">
+            <span class="material-symbols-outlined text-on-surface-variant text-5xl">person</span>
+          </div>
+          <h4 class="font-label-md text-label-md font-bold">Vice President</h4>
+          <p class="text-xs text-on-surface-variant">Member Name</p>
+        </div>
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm flex flex-col items-center text-center">
+          <div class="w-40 h-40 bg-surface-container-high rounded-xl mb-md flex items-center justify-center overflow-hidden">
+            <span class="material-symbols-outlined text-on-surface-variant text-5xl">person</span>
+          </div>
+          <h4 class="font-label-md text-label-md font-bold">Joint Secretary</h4>
+          <p class="text-xs text-on-surface-variant">Member Name</p>
+        </div>
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm flex flex-col items-center text-center">
+          <div class="w-40 h-40 bg-surface-container-high rounded-xl mb-md flex items-center justify-center overflow-hidden">
+            <span class="material-symbols-outlined text-on-surface-variant text-5xl">person</span>
+          </div>
+          <h4 class="font-label-md text-label-md font-bold">Treasurer</h4>
+          <p class="text-xs text-on-surface-variant">Member Name</p>
+        </div>
+      </div>
+
+      <!-- Row 3: 4 Executive Members -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-lg">
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm flex flex-col items-center text-center">
+          <div class="w-40 h-40 bg-surface-container-high rounded-xl mb-md flex items-center justify-center overflow-hidden">
+            <span class="material-symbols-outlined text-on-surface-variant text-5xl">person</span>
+          </div>
+          <h4 class="font-label-md text-label-md font-bold">Executive Member</h4>
+          <p class="text-xs text-on-surface-variant">Member Name</p>
+        </div>
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm flex flex-col items-center text-center">
+          <div class="w-40 h-40 bg-surface-container-high rounded-xl mb-md flex items-center justify-center overflow-hidden">
+            <span class="material-symbols-outlined text-on-surface-variant text-5xl">person</span>
+          </div>
+          <h4 class="font-label-md text-label-md font-bold">Executive Member</h4>
+          <p class="text-xs text-on-surface-variant">Member Name</p>
+        </div>
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm flex flex-col items-center text-center">
+          <div class="w-40 h-40 bg-surface-container-high rounded-xl mb-md flex items-center justify-center overflow-hidden">
+            <span class="material-symbols-outlined text-on-surface-variant text-5xl">person</span>
+          </div>
+          <h4 class="font-label-md text-label-md font-bold">Executive Member</h4>
+          <p class="text-xs text-on-surface-variant">Member Name</p>
+        </div>
+        <div class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm flex flex-col items-center text-center">
+          <div class="w-40 h-40 bg-surface-container-high rounded-xl mb-md flex items-center justify-center overflow-hidden">
+            <span class="material-symbols-outlined text-on-surface-variant text-5xl">person</span>
+          </div>
+          <h4 class="font-label-md text-label-md font-bold">Executive Member</h4>
+          <p class="text-xs text-on-surface-variant">Member Name</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Section 3: Our Parishes (Infinite Scroll) -->
+<section class="py-xxl bg-surface animate-float-up" id="parishes">
+  <!-- Heading -->
+  <div class="px-lg md:px-xxl max-w-container-max mx-auto mb-xl text-center">
+    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-sm">Our Parishes</h2>
+    <p class="font-body-md text-body-md text-on-surface-variant max-w-3xl mx-auto">Across our seven parishes, we stand together as one vibrant youth community Ã¢â‚¬â€<br>strengthened by our unity, guided by faith, and united in Christ.</p>
+  </div>
+
+  <!-- Full-width scrolling strip Ã¢â‚¬â€Ã¢â‚¬â€ 3 cards visible at a time -->
+  <div class="parish-marquee-wrap">
+    <div class="parish-marquee-track">
+
+      <!-- Ã¢â€¢ÂÃ¢â€¢Â SET 1 Ã¢â€¢ÂÃ¢â€¢Â -->
+
+      <!-- 1. St. Antony's Forane Church Ã¢â‚¬â€œ Paingottoor -->
+      <div class="parish-card bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col overflow-hidden group">
+        <div class="relative w-full h-44 overflow-hidden flex-shrink-0">
+          <img src="https://images.unsplash.com/photo-1548509925-0e6d678d4615?q=80&w=800&auto=format&fit=crop" alt="St. Antony's Forane Church" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          <span class="absolute bottom-2 left-3 font-label-sm text-label-sm uppercase tracking-widest text-white font-bold bg-primary/80 px-2 py-0.5 rounded-full">Forane</span>
+        </div>
+        <div class="p-lg flex flex-col flex-1">
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">St. Antony's Forane Church</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mb-md">Paingottoor</p>
+          <a href="paingottoor.html" class="parish-visit-btn mt-auto px-md py-sm bg-surface-container-high text-on-surface rounded-full font-label-sm text-label-sm hover:bg-primary hover:text-white w-full flex items-center justify-center gap-xs">
+            View <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. BVM Dolours Church Ã¢â‚¬â€œ Kulappuram -->
+      <div class="parish-card bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col overflow-hidden group">
+        <div class="relative w-full h-44 overflow-hidden flex-shrink-0">
+          <img src="https://images.unsplash.com/photo-1519638399535-1b036603ac77?q=80&w=800&auto=format&fit=crop" alt="BVM Dolours Church" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        </div>
+        <div class="p-lg flex flex-col flex-1">
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">BVM Dolours Church</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mb-md">Kulappuram</p>
+          <a href="kulappuram.html" class="parish-visit-btn mt-auto px-md py-sm bg-surface-container-high text-on-surface rounded-full font-label-sm text-label-sm hover:bg-primary hover:text-white w-full flex items-center justify-center gap-xs">
+            View <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 3. BVM Lourdes Church Ã¢â‚¬â€œ Mullaringad -->
+      <div class="parish-card bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col overflow-hidden group">
+        <div class="relative w-full h-44 overflow-hidden flex-shrink-0">
+          <img src="https://images.unsplash.com/photo-1548509925-0e6d678d4615?q=80&w=800&auto=format&fit=crop&crop=left" alt="BVM Lourdes Church" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        </div>
+        <div class="p-lg flex flex-col flex-1">
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">BVM Lourdes Church</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mb-md">Mullaringad</p>
+          <a href="mullaringad.html" class="parish-visit-btn mt-auto px-md py-sm bg-surface-container-high text-on-surface rounded-full font-label-sm text-label-sm hover:bg-secondary hover:text-white w-full flex items-center justify-center gap-xs">
+            View <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 4. St. Francis Xavier Church Ã¢â‚¬â€œ Pothanikad -->
+      <div class="parish-card bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col overflow-hidden group">
+        <div class="relative w-full h-44 overflow-hidden flex-shrink-0">
+          <img src="https://images.unsplash.com/photo-1519638399535-1b036603ac77?q=80&w=800&auto=format&fit=crop&crop=right" alt="St. Francis Xavier Church" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        </div>
+        <div class="p-lg flex flex-col flex-1">
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">St. Francis Xavier Church</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mb-md">Pothanikad</p>
+          <a href="pothanikad.html" class="parish-visit-btn mt-auto px-md py-sm bg-surface-container-high text-on-surface rounded-full font-label-sm text-label-sm hover:bg-primary hover:text-white w-full flex items-center justify-center gap-xs">
+            View <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 5. Christuraj Church Ã¢â‚¬â€œ Vellallu -->
+      <div class="parish-card bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col overflow-hidden group">
+        <div class="relative w-full h-44 overflow-hidden flex-shrink-0">
+          <img src="https://images.unsplash.com/photo-1548509925-0e6d678d4615?q=80&w=800&auto=format&fit=crop&crop=top" alt="Christuraj Church" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        </div>
+        <div class="p-lg flex flex-col flex-1">
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Christuraj Church</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mb-md">Vellallu</p>
+          <a href="vellallu.html" class="parish-visit-btn mt-auto px-md py-sm bg-surface-container-high text-on-surface rounded-full font-label-sm text-label-sm hover:bg-secondary hover:text-white w-full flex items-center justify-center gap-xs">
+            View <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 6. St. George Church Ã¢â‚¬â€œ Kadavoor -->
+      <div class="parish-card bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col overflow-hidden group">
+        <div class="relative w-full h-44 overflow-hidden flex-shrink-0">
+          <img src="https://images.unsplash.com/photo-1519638399535-1b036603ac77?q=80&w=800&auto=format&fit=crop&crop=bottom" alt="St. George Church" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        </div>
+        <div class="p-lg flex flex-col flex-1">
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">St. George Church</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mb-md">Kadavoor</p>
+          <a href="kadavoor.html" class="parish-visit-btn mt-auto px-md py-sm bg-surface-container-high text-on-surface rounded-full font-label-sm text-label-sm hover:bg-primary hover:text-white w-full flex items-center justify-center gap-xs">
+            View <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 7. St. Sebastian's Church Ã¢â‚¬â€œ Punnamattam -->
+      <div class="parish-card bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col overflow-hidden group">
+        <div class="relative w-full h-44 overflow-hidden flex-shrink-0">
+          <img src="https://images.unsplash.com/photo-1548509925-0e6d678d4615?q=80&w=800&auto=format&fit=crop&crop=center" alt="St. Sebastian's Church" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        </div>
+        <div class="p-lg flex flex-col flex-1">
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">St. Sebastian's Church</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mb-md">Punnamattam</p>
+          <a href="punnamattam.html" class="parish-visit-btn mt-auto px-md py-sm bg-surface-container-high text-on-surface rounded-full font-label-sm text-label-sm hover:bg-secondary hover:text-white w-full flex items-center justify-center gap-xs">
+            View <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </div><!-- end .parish-marquee-track 1 -->
+
+    <div class="parish-marquee-track" aria-hidden="true">
+      <!-- Ã¢â€¢ÂÃ¢â€¢Â SET 2 Ã¢â‚¬â€ exact duplicate for seamless loop Ã¢â€¢ÂÃ¢â€¢Â -->
+
+      <div class="parish-card bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col overflow-hidden group">
+        <div class="relative w-full h-44 overflow-hidden flex-shrink-0">
+          <img src="https://images.unsplash.com/photo-1548509925-0e6d678d4615?q=80&w=800&auto=format&fit=crop" alt="St. Antony's Forane Church" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          <span class="absolute bottom-2 left-3 font-label-sm text-label-sm uppercase tracking-widest text-white font-bold bg-primary/80 px-2 py-0.5 rounded-full">Forane</span>
+        </div>
+        <div class="p-lg flex flex-col flex-1">
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">St. Antony's Forane Church</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mb-md">Paingottoor</p>
+          <a href="paingottoor.html" class="parish-visit-btn mt-auto px-md py-sm bg-surface-container-high text-on-surface rounded-full font-label-sm text-label-sm hover:bg-primary hover:text-white w-full flex items-center justify-center gap-xs">
+            View <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="parish-card bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col overflow-hidden group">
+        <div class="relative w-full h-44 overflow-hidden flex-shrink-0">
+          <img src="https://images.unsplash.com/photo-1519638399535-1b036603ac77?q=80&w=800&auto=format&fit=crop" alt="BVM Dolours Church" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        </div>
+        <div class="p-lg flex flex-col flex-1">
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">BVM Dolours Church</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mb-md">Kulappuram</p>
+          <a href="kulappuram.html" class="parish-visit-btn mt-auto px-md py-sm bg-surface-container-high text-on-surface rounded-full font-label-sm text-label-sm hover:bg-primary hover:text-white w-full flex items-center justify-center gap-xs">
+            View <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="parish-card bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col overflow-hidden group">
+        <div class="relative w-full h-44 overflow-hidden flex-shrink-0">
+          <img src="https://images.unsplash.com/photo-1548509925-0e6d678d4615?q=80&w=800&auto=format&fit=crop&crop=left" alt="BVM Lourdes Church" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        </div>
+        <div class="p-lg flex flex-col flex-1">
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">BVM Lourdes Church</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mb-md">Mullaringad</p>
+          <a href="mullaringad.html" class="parish-visit-btn mt-auto px-md py-sm bg-surface-container-high text-on-surface rounded-full font-label-sm text-label-sm hover:bg-secondary hover:text-white w-full flex items-center justify-center gap-xs">
+            View <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="parish-card bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col overflow-hidden group">
+        <div class="relative w-full h-44 overflow-hidden flex-shrink-0">
+          <img src="https://images.unsplash.com/photo-1519638399535-1b036603ac77?q=80&w=800&auto=format&fit=crop&crop=right" alt="St. Francis Xavier Church" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        </div>
+        <div class="p-lg flex flex-col flex-1">
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">St. Francis Xavier Church</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mb-md">Pothanikad</p>
+          <a href="pothanikad.html" class="parish-visit-btn mt-auto px-md py-sm bg-surface-container-high text-on-surface rounded-full font-label-sm text-label-sm hover:bg-primary hover:text-white w-full flex items-center justify-center gap-xs">
+            View <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="parish-card bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col overflow-hidden group">
+        <div class="relative w-full h-44 overflow-hidden flex-shrink-0">
+          <img src="https://images.unsplash.com/photo-1548509925-0e6d678d4615?q=80&w=800&auto=format&fit=crop&crop=top" alt="Christuraj Church" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        </div>
+        <div class="p-lg flex flex-col flex-1">
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Christuraj Church</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mb-md">Vellallu</p>
+          <a href="vellallu.html" class="parish-visit-btn mt-auto px-md py-sm bg-surface-container-high text-on-surface rounded-full font-label-sm text-label-sm hover:bg-secondary hover:text-white w-full flex items-center justify-center gap-xs">
+            View <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="parish-card bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col overflow-hidden group">
+        <div class="relative w-full h-44 overflow-hidden flex-shrink-0">
+          <img src="https://images.unsplash.com/photo-1519638399535-1b036603ac77?q=80&w=800&auto=format&fit=crop&crop=bottom" alt="St. George Church" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        </div>
+        <div class="p-lg flex flex-col flex-1">
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">St. George Church</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mb-md">Kadavoor</p>
+          <a href="kadavoor.html" class="parish-visit-btn mt-auto px-md py-sm bg-surface-container-high text-on-surface rounded-full font-label-sm text-label-sm hover:bg-primary hover:text-white w-full flex items-center justify-center gap-xs">
+            View <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="parish-card bg-surface-container-lowest rounded-2xl border border-outline-variant shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col overflow-hidden group">
+        <div class="relative w-full h-44 overflow-hidden flex-shrink-0">
+          <img src="https://images.unsplash.com/photo-1548509925-0e6d678d4615?q=80&w=800&auto=format&fit=crop&crop=center" alt="St. Sebastian's Church" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        </div>
+        <div class="p-lg flex flex-col flex-1">
+          <h3 class="font-headline-md text-headline-md text-on-surface mb-xs">St. Sebastian's Church</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant mb-md">Punnamattam</p>
+          <a href="punnamattam.html" class="parish-visit-btn mt-auto px-md py-sm bg-surface-container-high text-on-surface rounded-full font-label-sm text-label-sm hover:bg-secondary hover:text-white w-full flex items-center justify-center gap-xs">
+            View <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+    </div><!-- end .parish-marquee-track -->
+  </div><!-- end .parish-marquee-wrap -->
+</section>
+<section class="py-xxl px-lg md:px-xxl bg-surface-container-low animate-float-up" id="activities">
+<div class="max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Our Activities</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Faith That Moves. A Life That Speaks</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Large Feature Card -->
+<div class="md:col-span-2 md:row-span-2 bg-surface rounded-2xl overflow-hidden shadow-sm border border-outline-variant relative group cursor-pointer">
+<img class="w-full h-64 md:h-80 object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A dynamic, candid shot of a large group of youth gathering in an outdoor amphitheater for a regional youth meet. The atmosphere is vibrant and engaging, with soft evening light creating long shadows. Some are holding small red and yellow flags, reflecting the KCYM brand colors in a subtle, festive way." src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2940&auto=format&fit=crop">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-xl">
+<div class="flex gap-sm mb-sm">
+</div>
+<h3 class="font-headline-md text-headline-md text-white mb-xs">Annual Regional Youth Meet</h3>
+<p class="font-body-md text-body-md text-gray-200 line-clamp-2">Over 500 members gathered for three days of fellowship, learning, and planning for the year ahead.</p>
+<div class="flex items-center gap-sm mt-md text-gray-300 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm">calendar_month</span> Oct 12 - 14, 2023
+                            </div>
+</div>
+</div>
+<!-- Smaller Cards -->
+<div class="md:col-span-1 md:row-span-1 bg-surface rounded-2xl overflow-hidden shadow-sm border border-outline-variant relative group cursor-pointer">
+<div class="absolute top-0 w-full h-1 bg-secondary-container z-10"></div>
+<img class="w-full h-40 md:h-full object-cover absolute inset-0 transition-transform duration-500 group-hover:scale-105" data-alt="Close-up of young volunteers handing out packed meals to families in need during a local charity drive. The focus is on the warm interaction and smiles between the volunteers and recipients, capturing a spirit of compassionate service." src="https://images.unsplash.com/photo-1593113580327-024523d4e7d4?q=80&w=2940&auto=format&fit=crop">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-md">
+<h3 class="font-label-md text-label-md font-bold text-white mb-xs">Charity Food Drive</h3>
+<div class="flex items-center gap-xs text-gray-300 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm">calendar_month</span> Sep 05, 2023
+                            </div>
+</div>
+</div>
+
+
+</div>
+<a href="events.html" class="mt-lg w-full md:w-auto md:px-xl mx-auto flex items-center justify-center gap-xs text-primary font-label-md text-label-md py-sm border border-primary rounded-full hover:bg-primary-fixed transition-colors">View All Activities</a>
+</div>
+</section>
+<!-- Section 5: Connect With Us -->
+<section class="py-xxl px-lg md:px-xxl bg-surface relative overflow-hidden animate-float-up" id="connect">
+<!-- Decorative background element -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-fixed-dim rounded-full blur-3xl opacity-20 -translate-y-1/2 translate-x-1/4"></div>
+<div class="max-w-container-max mx-auto px-lg relative z-10">
+  <div class="text-center mb-xl">
+    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-sm">Connect With Us</h2>
+    <div class="w-16 h-1 bg-secondary-container rounded-full mx-auto mb-md"></div>
+    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Have questions or want to get involved? Reach out to us through any of these channels.</p>
+  </div>
+  
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
+    <!-- Address -->
+    <div class="bg-surface-container-lowest rounded-2xl p-lg shadow-sm border border-outline-variant flex flex-col items-center text-center hover:shadow-md transition-shadow">
+      <div class="w-14 h-14 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center mb-md">
+        <span class="material-symbols-outlined text-2xl">location_on</span>
+      </div>
+      <h4 class="font-label-md text-label-md font-bold text-on-surface mb-xs">Address</h4>
+      <p class="font-body-sm text-body-sm text-on-surface-variant">KCYM Office, Paingottoor Parish,<br>Kerala, India</p>
+    </div>
+
+    <!-- Email -->
+    <div class="bg-surface-container-lowest rounded-2xl p-lg shadow-sm border border-outline-variant flex flex-col items-center text-center hover:shadow-md transition-shadow">
+      <div class="w-14 h-14 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center mb-md">
+        <span class="material-symbols-outlined text-2xl">mail</span>
+      </div>
+      <h4 class="font-label-md text-label-md font-bold text-on-surface mb-xs">Email</h4>
+      <p class="font-body-sm text-body-sm text-on-surface-variant">contact@kcympaingottoor.org</p>
+    </div>
+
+    <!-- Phone -->
+    <div class="bg-surface-container-lowest rounded-2xl p-lg shadow-sm border border-outline-variant flex flex-col items-center text-center hover:shadow-md transition-shadow">
+      <div class="w-14 h-14 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center mb-md">
+        <span class="material-symbols-outlined text-2xl">call</span>
+      </div>
+      <h4 class="font-label-md text-label-md font-bold text-on-surface mb-xs">Phone</h4>
+      <p class="font-body-sm text-body-sm text-on-surface-variant">+91 98765 43210</p>
+    </div>
+
+    <!-- Instagram -->
+    <div class="bg-surface-container-lowest rounded-2xl p-lg shadow-sm border border-outline-variant flex flex-col items-center text-center hover:shadow-md transition-shadow">
+      <div class="w-14 h-14 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center mb-md">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35-.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
+        </svg>
+      </div>
+      <h4 class="font-label-md text-label-md font-bold text-on-surface mb-xs">Instagram</h4>
+      <p class="font-body-sm text-body-sm text-on-surface-variant">@kcym_paingottoor</p>
+    </div>
+  </div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-inverse-surface dark:bg-surface-container-lowest text-secondary-fixed dark:text-secondary border-t bg-inverse-surface dark:bg-surface-container-high w-full mt-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-lg px-lg md:px-xxl py-xxl w-full max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1 flex flex-col gap-md">
+<span class="font-headline-md text-headline-md font-black text-on-primary-container mb-sm text-white">KCYM</span>
+<p class="font-body-md text-body-md text-surface-variant dark:text-on-surface-variant opacity-80 text-sm">
+                     Ignite & Unite. Empowering the youth of Kerala for a brighter tomorrow through faith and action.
+                 </p>
+</div>
+<div class="col-span-1 md:col-span-2 flex flex-col md:flex-row gap-lg justify-around">
+<div class="flex flex-col gap-sm">
+<h4 class="font-label-sm text-label-sm font-bold uppercase text-white/90">Quick Links</h4>
+<a class="text-surface-variant dark:text-on-surface-variant opacity-80 hover:text-secondary-fixed-dim dark:hover:text-secondary-container transition-all focus:outline-none focus:ring-2 focus:ring-secondary-container font-body-md text-body-md text-sm" href="#about">About Us</a>
+<a class="text-surface-variant dark:text-on-surface-variant opacity-80 hover:text-secondary-fixed-dim dark:hover:text-secondary-container transition-all focus:outline-none focus:ring-2 focus:ring-secondary-container font-body-md text-body-md text-sm" href="events.html">Activities</a>
+</div>
+<div class="flex flex-col gap-sm">
+<h4 class="font-label-sm text-label-sm font-bold uppercase text-white/90">Resources</h4>
+<a class="text-surface-variant dark:text-on-surface-variant opacity-80 hover:text-secondary-fixed-dim dark:hover:text-secondary-container transition-all focus:outline-none focus:ring-2 focus:ring-secondary-container font-body-md text-body-md text-sm" href="#">Privacy Policy</a>
+<a class="text-surface-variant dark:text-on-surface-variant opacity-80 hover:text-secondary-fixed-dim dark:hover:text-secondary-container transition-all focus:outline-none focus:ring-2 focus:ring-secondary-container font-body-md text-body-md text-sm" href="#">Terms of Service</a>
+<a class="text-surface-variant dark:text-on-surface-variant opacity-80 hover:text-secondary-fixed-dim dark:hover:text-secondary-container transition-all focus:outline-none focus:ring-2 focus:ring-secondary-container font-body-md text-body-md text-sm" href="#">Spiritual Resources</a>
+</div>
+</div>
+<div class="col-span-1 md:col-span-1 flex flex-col gap-md items-start md:items-end">
+<a class="text-surface-variant dark:text-on-surface-variant opacity-80 hover:text-secondary-fixed-dim dark:hover:text-secondary-container transition-all focus:outline-none focus:ring-2 focus:ring-secondary-container font-body-md text-body-md text-sm" href="#connect">Contact Us</a>
+<button class="bg-secondary text-on-secondary px-lg py-sm rounded-full font-label-md text-label-md mt-sm hover:opacity-90 transition-opacity">
+                    Donate
+                </button>
+</div>
+<div class="col-span-1 md:col-span-4 mt-xl pt-lg border-t border-white/10 text-center md:text-left">
+<p class="font-label-sm text-label-sm text-surface-variant dark:text-on-surface-variant opacity-60">
+                    Ã‚Â© 2024 Kerala Catholic Youth Movement. All rights reserved.
+                </p>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.05, rootMargin: "0px 0px 50px 0px" });
+    
+    // Select all elements that have the animate class
+    const elements = document.querySelectorAll('.animate-float-up');
+    elements.forEach((el, index) => {
+        observer.observe(el);
+        
+        // If it's one of the first few elements (like the hero section), animate it quickly
+        if (index < 2) {
+            setTimeout(() => el.classList.add('is-visible'), 150);
+        }
+    });
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

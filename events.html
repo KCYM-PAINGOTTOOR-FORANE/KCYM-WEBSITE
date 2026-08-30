@@ -1,0 +1,476 @@
+﻿<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KCYM Events &amp; Activities</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed": "#ffdad6",
+                        "outline-variant": "#e7bdb8",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-tint": "#c00014",
+                        "background": "#f8f9fa",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "on-tertiary-container": "#fffbfb",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary": "#705d00",
+                        "outline": "#926f6b",
+                        "secondary-fixed-dim": "#e9c400",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-variant": "#e1e3e4",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#ffe16d",
+                        "on-primary-fixed-variant": "#93000d",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "on-primary-fixed": "#410002",
+                        "on-surface": "#191c1d",
+                        "surface": "#f8f9fa",
+                        "inverse-primary": "#ffb4ab",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "on-background": "#191c1d",
+                        "secondary-container": "#fcd400",
+                        "on-secondary-container": "#6e5c00",
+                        "primary-container": "#e31e24",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "surface-bright": "#f8f9fa",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "surface-container": "#edeeef",
+                        "tertiary-fixed": "#e5e2e1",
+                        "on-surface-variant": "#5d3f3c",
+                        "tertiary-container": "#757474",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#d9dadb",
+                        "on-primary-container": "#fffafa",
+                        "error": "#ba1a1a",
+                        "tertiary": "#5c5b5b",
+                        "primary": "#ba0013",
+                        "on-secondary-fixed": "#221b00",
+                        "on-secondary-fixed-variant": "#544600"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        "container-max": "1200px",
+                        md: "16px",
+                        lg: "24px",
+                        xxl: "64px",
+                        unit: "8px",
+                        gutter: "24px",
+                        xs: "4px",
+                        xl: "40px",
+                        sm: "8px"
+                    },
+                    fontFamily: {
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-xl": ["Hanken Grotesk"]
+                    },
+                    fontSize: {
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "label-sm": ["12px", { lineHeight: "16px", fontWeight: "600" }],
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "label-md": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "500" }],
+                        "headline-lg-mobile": ["28px", { lineHeight: "36px", fontWeight: "700" }],
+                        "headline-xl": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+        .animate-float-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .animate-float-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+</style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline sticky top-0 z-50 w-full transition-colors duration-200">
+<div class="flex justify-between items-center w-full px-lg md:px-xxl max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-sm">
+<a href="index.html">
+<img alt="KCYM Logo" class="h-16 w-auto object-contain transition-transform hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVZYTvIplMtqBvP05EgQDQsEi0Dl-pK7c8FjyP9lzlc5l1pJBITDckMwSQ_o0imt7v8e_MSohMq4qJLg6AmnyamF7j3AayYZOCNSldTdZdFKda0G338DaTrM_zlXxKpKZqoGk1mbPBAzBWry64VPa_1-gfXSMIOcJRTOZuhWd87Vq5TGORZ8eZp-XRJ1tPIWIZ_wEIldY_wVIYgyLDKwUAl1qsbRb8xpDMyegYqbiaFcO1oJGODtoDgs48xFgWP7B6YDE">
+</a>
+</div>
+<nav class="hidden md:flex items-center gap-lg h-full">
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200 h-full flex items-center" href="index.html#about">About</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200 h-full flex items-center" href="index.html#parishes">Parishes</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200 h-full flex items-center" href="events.html">Activities</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200 h-full flex items-center" href="index.html#connect">Connect</a>
+</nav>
+<div class="flex items-center gap-md">
+
+<button class="md:hidden text-on-surface p-sm">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative bg-surface-container-lowest pt-xxl pb-xl border-b border-surface-container-high overflow-hidden animate-float-up">
+<div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
+<div class="max-w-container-max mx-auto px-lg relative z-10 flex flex-col items-center text-center">
+<div class="inline-flex items-center gap-sm bg-secondary-container text-on-secondary-container px-md py-xs rounded-full font-label-sm text-label-sm mb-lg">
+<span class="material-symbols-outlined text-sm" data-icon="celebration">celebration</span>
+                    Discover the Vibrancy
+                </div>
+<h1 class="font-headline-xl text-headline-xl md:text-headline-xl text-on-background mb-md">Events &amp; Activities</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                    Explore the dynamic life of KCYM. From spiritual gatherings to social impact drives, join our community across all parishes in action and faith.
+                </p>
+</div>
+</section>
+<!-- Upcoming Events Grid -->
+<section class="max-w-container-max mx-auto px-lg pb-xxl animate-float-up">
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-lg flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="calendar_month">calendar_month</span>
+                Upcoming Events
+            </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+<!-- Card 1 -->
+<article class="bg-surface-container-lowest rounded-xl border border-surface-container-highest overflow-hidden hover:shadow-md hover:border-outline-variant transition-all duration-300 group flex flex-col h-full relative">
+<div class="absolute top-0 left-0 w-full h-1 bg-secondary"></div>
+<div class="p-lg flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-md">
+<span class="bg-primary-container text-on-primary-container px-sm py-xs rounded-md border border-primary/20 font-bold text-label-sm inline-flex items-center gap-xs"><span class="material-symbols-outlined text-sm">church</span>Paingottoor Parish</span>
+<div class="flex flex-col items-end text-on-surface-variant">
+<span class="font-headline-md text-headline-md text-primary font-bold">15</span>
+<span class="text-label-sm font-label-sm uppercase tracking-wider">Aug</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-sm group-hover:text-primary transition-colors">Mega Blood Donation Drive</h3>
+<div class="flex items-center gap-xs text-on-surface-variant text-label-md font-label-md mb-md">
+<span class="material-symbols-outlined text-[18px]" data-icon="location_on">location_on</span>
+                            Paingottoor Parish Hall
+                        </div>
+<p class="text-body-md font-body-md text-on-surface-variant line-clamp-3 mb-lg">
+                            Join us for our annual blood donation camp. Your small contribution can save a life. Open to all youth members aged 18 and above.
+                        </p>
+<div class="mt-auto">
+<button class="w-full py-sm rounded border border-primary text-primary font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors text-center cursor-pointer view-details-btn">
+                                View Details
+                            </button>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-surface-container-lowest rounded-xl border border-surface-container-highest overflow-hidden hover:shadow-md hover:border-outline-variant transition-all duration-300 group flex flex-col h-full relative">
+<div class="absolute top-0 left-0 w-full h-1 bg-primary"></div>
+<div class="p-lg flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-md">
+<span class="bg-secondary-container text-on-secondary-container px-sm py-xs rounded-md border border-secondary/20 font-bold text-label-sm inline-flex items-center gap-xs"><span class="material-symbols-outlined text-sm">account_balance</span>Forane</span>
+<div class="flex flex-col items-end text-on-surface-variant">
+<span class="font-headline-md text-headline-md text-primary font-bold">22</span>
+<span class="text-label-sm font-label-sm uppercase tracking-wider">Aug</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-sm group-hover:text-primary transition-colors">Youth Retreat 2024</h3>
+<div class="flex items-center gap-xs text-on-surface-variant text-label-md font-label-md mb-md">
+<span class="material-symbols-outlined text-[18px]" data-icon="location_on">location_on</span>
+                            Kothamangalam Cathedral
+                        </div>
+<p class="text-body-md font-body-md text-on-surface-variant line-clamp-3 mb-lg">
+                            A three-day spiritual renewal program focused on finding purpose and strengthening faith in the modern world.
+                        </p>
+<div class="mt-auto">
+<button class="w-full py-sm rounded border border-primary text-primary font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors text-center cursor-pointer view-details-btn">
+                                View Details
+                            </button>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-surface-container-lowest rounded-xl border border-surface-container-highest overflow-hidden hover:shadow-md hover:border-outline-variant transition-all duration-300 group flex flex-col h-full relative">
+<div class="absolute top-0 left-0 w-full h-1 bg-tertiary"></div>
+<div class="p-lg flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-md">
+<span class="bg-tertiary-container text-on-tertiary-container px-sm py-xs rounded-md border border-tertiary/20 font-bold text-label-sm inline-flex items-center gap-xs"><span class="material-symbols-outlined text-sm">church</span>Muvattupuzha Parish</span>
+<div class="flex flex-col items-end text-on-surface-variant">
+<span class="font-headline-md text-headline-md text-primary font-bold">05</span>
+<span class="text-label-sm font-label-sm uppercase tracking-wider">Sep</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-sm group-hover:text-primary transition-colors">Inter-Parish Football Tournament</h3>
+<div class="flex items-center gap-xs text-on-surface-variant text-label-md font-label-md mb-md">
+<span class="material-symbols-outlined text-[18px]" data-icon="location_on">location_on</span>
+                            Muvattupuzha Stadium
+                        </div>
+<p class="text-body-md font-body-md text-on-surface-variant line-clamp-3 mb-lg">
+                            The biggest sporting event of the year! Gather your parish team and compete for the KCYM Ever-Rolling Trophy.
+                        </p>
+<div class="mt-auto">
+<button class="w-full py-sm rounded bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container hover:text-on-primary-container transition-colors text-center cursor-pointer view-details-btn">
+                                View Details
+                            </button>
+</div>
+</div>
+</article>
+</div>
+<div class="flex justify-center mt-xl">
+<button class="px-lg py-sm rounded-full border border-surface-container-highest text-on-surface-variant hover:bg-surface-container-low hover:text-on-background transition-colors font-label-md text-label-md flex items-center gap-xs">
+                    Load More Events
+                    <span class="material-symbols-outlined text-[18px]" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</section>
+<!-- Past Events -->
+<section class="bg-surface-container-low py-xxl border-t border-surface-container-highest animate-float-up">
+<div class="max-w-container-max mx-auto px-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface-variant mb-lg flex items-center gap-sm opacity-80"><span class="material-symbols-outlined" data-icon="history">history</span>Past Events</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md opacity-75">
+<!-- Past Card 1 -->
+<div class="bg-surface-container-lowest rounded-lg border border-surface-container-highest p-md flex flex-col hover:opacity-100 transition-opacity cursor-pointer view-details-btn">
+<span class="text-label-sm font-label-sm text-on-surface-variant mb-xs">July 2024</span>
+<h4 class="font-headline-sm text-headline-sm text-on-background mb-sm">Leadership Training Camp</h4>
+<div class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-xs mt-auto">
+<span class="material-symbols-outlined text-[16px]" data-icon="imagesmode">imagesmode</span>
+                            View Gallery
+                        </div>
+</div>
+<!-- Past Card 2 -->
+<div class="bg-surface-container-lowest rounded-lg border border-surface-container-highest p-md flex flex-col hover:opacity-100 transition-opacity cursor-pointer view-details-btn">
+<span class="text-label-sm font-label-sm text-on-surface-variant mb-xs">June 2024</span>
+<h4 class="font-headline-sm text-headline-sm text-on-background mb-sm">Environment Day Tree Plantation</h4>
+<div class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-xs mt-auto">
+<span class="material-symbols-outlined text-[16px]" data-icon="imagesmode">imagesmode</span>
+                            View Gallery
+                        </div>
+</div>
+<!-- Past Card 3 -->
+<div class="bg-surface-container-lowest rounded-lg border border-surface-container-highest p-md flex flex-col hover:opacity-100 transition-opacity cursor-pointer view-details-btn">
+<span class="text-label-sm font-label-sm text-on-surface-variant mb-xs">May 2024</span>
+<h4 class="font-headline-sm text-headline-sm text-on-background mb-sm">Career Guidance Seminar</h4>
+<div class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-xs mt-auto">
+<span class="material-symbols-outlined text-[16px]" data-icon="article">article</span>
+                            Read Report
+                        </div>
+</div>
+<!-- Past Card 4 -->
+<div class="bg-surface-container-lowest rounded-lg border border-surface-container-highest p-md flex flex-col hover:opacity-100 transition-opacity cursor-pointer view-details-btn">
+<span class="text-label-sm font-label-sm text-on-surface-variant mb-xs">April 2024</span>
+<h4 class="font-headline-sm text-headline-sm text-on-background mb-sm">Easter Charity Visit</h4>
+<div class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-xs mt-auto">
+<span class="material-symbols-outlined text-[16px]" data-icon="imagesmode">imagesmode</span>
+                            View Gallery
+                        </div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-inverse-surface dark:bg-surface-container-lowest text-secondary-fixed dark:text-secondary border-t bg-inverse-surface dark:bg-surface-container-high w-full mt-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-lg px-lg md:px-xxl py-xxl w-full max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1 flex flex-col gap-md">
+<span class="font-headline-md text-headline-md font-black text-on-primary-container mb-sm text-white">KCYM</span>
+<p class="font-body-md text-body-md text-surface-variant dark:text-on-surface-variant opacity-80 text-sm">
+                     Ignite & Unite. Empowering the youth of Kerala for a brighter tomorrow through faith and action.
+                 </p>
+</div>
+<div class="col-span-1 md:col-span-2 flex flex-col md:flex-row gap-lg justify-around">
+<div class="flex flex-col gap-sm">
+<h4 class="font-label-sm text-label-sm font-bold uppercase text-white/90">Quick Links</h4>
+<a class="text-surface-variant dark:text-on-surface-variant opacity-80 hover:text-secondary-fixed-dim dark:hover:text-secondary-container transition-all focus:outline-none focus:ring-2 focus:ring-secondary-container font-body-md text-body-md text-sm" href="#about">About Us</a>
+<a class="text-surface-variant dark:text-on-surface-variant opacity-80 hover:text-secondary-fixed-dim dark:hover:text-secondary-container transition-all focus:outline-none focus:ring-2 focus:ring-secondary-container font-body-md text-body-md text-sm" href="events.html">Activities</a>
+</div>
+<div class="flex flex-col gap-sm">
+<h4 class="font-label-sm text-label-sm font-bold uppercase text-white/90">Resources</h4>
+<a class="text-surface-variant dark:text-on-surface-variant opacity-80 hover:text-secondary-fixed-dim dark:hover:text-secondary-container transition-all focus:outline-none focus:ring-2 focus:ring-secondary-container font-body-md text-body-md text-sm" href="#">Privacy Policy</a>
+<a class="text-surface-variant dark:text-on-surface-variant opacity-80 hover:text-secondary-fixed-dim dark:hover:text-secondary-container transition-all focus:outline-none focus:ring-2 focus:ring-secondary-container font-body-md text-body-md text-sm" href="#">Terms of Service</a>
+<a class="text-surface-variant dark:text-on-surface-variant opacity-80 hover:text-secondary-fixed-dim dark:hover:text-secondary-container transition-all focus:outline-none focus:ring-2 focus:ring-secondary-container font-body-md text-body-md text-sm" href="#">Spiritual Resources</a>
+</div>
+</div>
+<div class="col-span-1 md:col-span-1 flex flex-col gap-md items-start md:items-end">
+<a class="text-surface-variant dark:text-on-surface-variant opacity-80 hover:text-secondary-fixed-dim dark:hover:text-secondary-container transition-all focus:outline-none focus:ring-2 focus:ring-secondary-container font-body-md text-body-md text-sm" href="#connect">Contact Us</a>
+<button class="bg-secondary text-on-secondary px-lg py-sm rounded-full font-label-md text-label-md mt-sm hover:opacity-90 transition-opacity">
+                    Donate
+                </button>
+</div>
+<div class="col-span-1 md:col-span-4 mt-xl pt-lg border-t border-white/10 text-center md:text-left">
+<p class="font-label-sm text-label-sm text-surface-variant dark:text-on-surface-variant opacity-60">
+                    Â© 2024 Kerala Catholic Youth Movement. All rights reserved.
+                </p>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener(""DOMContentLoaded"", () => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.animate-float-up').forEach((el) => {
+        observer.observe(el);
+    });
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.05, rootMargin: "0px 0px 50px 0px" });
+    
+    // Select all elements that have the animate class
+    const elements = document.querySelectorAll('.animate-float-up');
+    elements.forEach((el, index) => {
+        observer.observe(el);
+        
+        // If it's one of the first few elements (like the hero section), animate it quickly
+        if (index < 2) {
+            setTimeout(() => el.classList.add('is-visible'), 150);
+        }
+    });
+});
+</script>
+<!-- Event Details Modal -->
+<div id="eventModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-md">
+    <!-- Backdrop -->
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" id="modalBackdrop"></div>
+    
+    <!-- Modal Content -->
+    <div class="relative bg-surface dark:bg-surface-container text-on-surface w-full max-w-2xl rounded-2xl shadow-lg border border-outline-variant flex flex-col max-h-[90vh] overflow-hidden transform transition-all duration-300 scale-95 opacity-0" id="modalContent">
+        <!-- Header -->
+        <div class="flex justify-between items-center p-lg border-b border-outline-variant">
+            <h3 class="font-headline-sm text-headline-sm font-bold" id="modalTitle">Event Details</h3>
+            <button id="closeModalBtn" class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-surface-container-highest transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        
+        <!-- Body (Scrollable) -->
+        <div class="p-lg overflow-y-auto flex-grow flex flex-col gap-md">
+            <div class="w-full h-48 bg-surface-container-highest rounded-xl overflow-hidden flex items-center justify-center">
+                <span class="material-symbols-outlined text-4xl text-on-surface-variant">photo_library</span>
+                <p class="ml-sm text-on-surface-variant">Event Photos Gallery</p>
+            </div>
+            
+            <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                Join us for an amazing event full of fellowship and joy. This is a great opportunity to connect with fellow KCYM members, participate in engaging activities, and grow in faith. All are welcome!
+            </p>
+            
+            <div class="bg-surface-container-low p-md rounded-xl mt-sm">
+                <h4 class="font-label-md text-label-md font-bold mb-xs">Event Information</h4>
+                <ul class="text-body-sm text-on-surface-variant space-y-1">
+                    <li><strong>Date:</strong> Upcoming</li>
+                    <li><strong>Location:</strong> KCYM Regional Center</li>
+                    <li><strong>Organized By:</strong> KCYM Committee</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Footer / Social Links -->
+        <div class="p-lg border-t border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+            <span class="font-label-md text-label-md font-bold">Share & Connect:</span>
+            <div class="flex gap-sm">
+                <a href="#" class="w-10 h-10 rounded-full bg-[#1877F2] text-white flex items-center justify-center hover:opacity-90">
+                    <span class="material-symbols-outlined text-lg">facebook</span>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-[#E1306C] text-white flex items-center justify-center hover:opacity-90">
+                    <span class="material-symbols-outlined text-lg">photo_camera</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    // Modal logic
+    const modal = document.getElementById('eventModal');
+    if(modal) {
+        const modalContent = document.getElementById('modalContent');
+        const closeBtn = document.getElementById('closeModalBtn');
+        const backdrop = document.getElementById('modalBackdrop');
+        const viewBtns = document.querySelectorAll('.view-details-btn');
+
+        const openModal = () => {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        };
+
+        const closeModal = () => {
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        };
+
+        viewBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal();
+            });
+        });
+
+        closeBtn.addEventListener('click', closeModal);
+        backdrop.addEventListener('click', closeModal);
+    }
+});
+</script>
+</body></html>
+
+
+
+
+
+
+

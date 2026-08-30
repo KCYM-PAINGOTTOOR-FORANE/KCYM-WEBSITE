@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KCYM Events &amp; Activities</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed": "#ffdad6",
+                        "outline-variant": "#e7bdb8",
+                        "inverse-on-surface": "#f0f1f2",
+                        "surface-tint": "#c00014",
+                        "background": "#f8f9fa",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "on-tertiary-container": "#fffbfb",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary": "#705d00",
+                        "outline": "#926f6b",
+                        "secondary-fixed-dim": "#e9c400",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-variant": "#e1e3e4",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#ffe16d",
+                        "on-primary-fixed-variant": "#93000d",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "on-primary-fixed": "#410002",
+                        "on-surface": "#191c1d",
+                        "surface": "#f8f9fa",
+                        "inverse-primary": "#ffb4ab",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "on-background": "#191c1d",
+                        "secondary-container": "#fcd400",
+                        "on-secondary-container": "#6e5c00",
+                        "primary-container": "#e31e24",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "surface-bright": "#f8f9fa",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "surface-container": "#edeeef",
+                        "tertiary-fixed": "#e5e2e1",
+                        "on-surface-variant": "#5d3f3c",
+                        "tertiary-container": "#757474",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#d9dadb",
+                        "on-primary-container": "#fffafa",
+                        "error": "#ba1a1a",
+                        "tertiary": "#5c5b5b",
+                        "primary": "#ba0013",
+                        "on-secondary-fixed": "#221b00",
+                        "on-secondary-fixed-variant": "#544600"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        "container-max": "1200px",
+                        md: "16px",
+                        lg: "24px",
+                        xxl: "64px",
+                        unit: "8px",
+                        gutter: "24px",
+                        xs: "4px",
+                        xl: "40px",
+                        sm: "8px"
+                    },
+                    fontFamily: {
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-xl": ["Hanken Grotesk"]
+                    },
+                    fontSize: {
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+                        "label-sm": ["12px", { lineHeight: "16px", fontWeight: "600" }],
+                        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "700" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "label-md": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "500" }],
+                        "headline-lg-mobile": ["28px", { lineHeight: "36px", fontWeight: "700" }],
+                        "headline-xl": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="w-full top-0 sticky bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline z-50">
+<div class="flex justify-between items-center h-16 px-lg max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary cursor-pointer transition-all duration-200">
+                KCYM
+            </div>
+<nav class="hidden md:flex gap-lg items-center">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#">Home</a>
+<a class="text-primary dark:text-inverse-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md cursor-pointer transition-all duration-200" href="#">Events</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#">Parishes</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#">News</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#">About</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-on-surface" data-icon="search">search</span>
+</button>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-full font-label-md text-label-md hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm hover:shadow-md cursor-pointer">
+                    Join Us
+                </button>
+<button class="md:hidden flex items-center justify-center w-10 h-10">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative bg-surface-container-lowest pt-xxl pb-xl border-b border-surface-container-high overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
+<div class="max-w-container-max mx-auto px-lg relative z-10 flex flex-col items-center text-center">
+<div class="inline-flex items-center gap-sm bg-secondary-container text-on-secondary-container px-md py-xs rounded-full font-label-sm text-label-sm mb-lg">
+<span class="material-symbols-outlined text-sm" data-icon="celebration">celebration</span>
+                    Discover the Vibrancy
+                </div>
+<h1 class="font-headline-xl text-headline-xl md:text-headline-xl text-on-background mb-md">Events &amp; Activities</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                    Explore the dynamic life of KCYM. From spiritual gatherings to social impact drives, join our community across all parishes in action and faith.
+                </p>
+</div>
+</section>
+<!-- Search & Filters -->
+<section class="max-w-container-max mx-auto px-lg py-xl">
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container-highest p-md shadow-sm flex flex-col md:flex-row gap-md items-center justify-between">
+<div class="flex flex-wrap gap-sm w-full md:w-auto"><select class="px-md py-sm rounded-lg border border-surface-container-highest bg-surface text-on-background font-body-md outline-none focus:border-primary cursor-pointer hover:bg-surface-container-low transition-colors"><option value="">Filter by Parish</option><option value="paingottoor">Paingottoor</option><option value="kothamangalam">Kothamangalam</option><option value="muvattupuzha">Muvattupuzha</option></select><select class="px-md py-sm rounded-lg border border-surface-container-highest bg-surface text-on-background font-body-md outline-none focus:border-primary cursor-pointer hover:bg-surface-container-low transition-colors"><option value="">Filter by Forane</option><option value="kothamangalam">Kothamangalam</option><option value="muvattupuzha">Muvattupuzha</option><option value="thodupuzha">Thodupuzha</option></select></div>
+</div>
+</section>
+<!-- Upcoming Events Grid -->
+<section class="max-w-container-max mx-auto px-lg pb-xxl">
+<h2 class="font-headline-lg text-headline-lg text-on-background mb-lg flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="calendar_month">calendar_month</span>
+                Upcoming Events
+            </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+<!-- Card 1 -->
+<article class="bg-surface-container-lowest rounded-xl border border-surface-container-highest overflow-hidden hover:shadow-md hover:border-outline-variant transition-all duration-300 group flex flex-col h-full relative">
+<div class="absolute top-0 left-0 w-full h-1 bg-secondary"></div>
+<div class="p-lg flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-md">
+<span class="text-primary font-bold text-label-md inline-flex items-center gap-xs"><span class="material-symbols-outlined text-sm">church</span>Paingottoor Parish</span>
+<div class="flex flex-col items-end text-on-surface-variant">
+<span class="font-headline-md text-headline-md text-primary font-bold">15</span>
+<span class="text-label-sm font-label-sm uppercase tracking-wider">Aug</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-sm group-hover:text-primary transition-colors">Mega Blood Donation Drive</h3>
+<div class="flex items-center gap-xs text-on-surface-variant text-label-md font-label-md mb-md">
+<span class="material-symbols-outlined text-[18px]" data-icon="location_on">location_on</span>
+                            Paingottoor Parish Hall
+                        </div>
+<p class="text-body-md font-body-md text-on-surface-variant line-clamp-3 mb-lg">
+                            Join us for our annual blood donation camp. Your small contribution can save a life. Open to all youth members aged 18 and above.
+                        </p>
+<div class="mt-auto">
+<button class="w-full py-sm rounded border border-primary text-primary font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors text-center cursor-pointer">
+                                Register Now
+                            </button>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-surface-container-lowest rounded-xl border border-surface-container-highest overflow-hidden hover:shadow-md hover:border-outline-variant transition-all duration-300 group flex flex-col h-full relative">
+<div class="absolute top-0 left-0 w-full h-1 bg-primary"></div>
+<div class="p-lg flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-md">
+<span class="text-secondary font-bold text-label-md inline-flex items-center gap-xs"><span class="material-symbols-outlined text-sm">church</span>Kothamangalam Parish</span>
+<div class="flex flex-col items-end text-on-surface-variant">
+<span class="font-headline-md text-headline-md text-primary font-bold">22</span>
+<span class="text-label-sm font-label-sm uppercase tracking-wider">Aug</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-sm group-hover:text-primary transition-colors">Youth Retreat 2024</h3>
+<div class="flex items-center gap-xs text-on-surface-variant text-label-md font-label-md mb-md">
+<span class="material-symbols-outlined text-[18px]" data-icon="location_on">location_on</span>
+                            Kothamangalam Cathedral
+                        </div>
+<p class="text-body-md font-body-md text-on-surface-variant line-clamp-3 mb-lg">
+                            A three-day spiritual renewal program focused on finding purpose and strengthening faith in the modern world.
+                        </p>
+<div class="mt-auto">
+<button class="w-full py-sm rounded border border-primary text-primary font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors text-center cursor-pointer">
+                                Learn More
+                            </button>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-surface-container-lowest rounded-xl border border-surface-container-highest overflow-hidden hover:shadow-md hover:border-outline-variant transition-all duration-300 group flex flex-col h-full relative">
+<div class="absolute top-0 left-0 w-full h-1 bg-tertiary"></div>
+<div class="p-lg flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-md">
+<span class="text-tertiary font-bold text-label-md inline-flex items-center gap-xs"><span class="material-symbols-outlined text-sm">church</span>Muvattupuzha Parish</span>
+<div class="flex flex-col items-end text-on-surface-variant">
+<span class="font-headline-md text-headline-md text-primary font-bold">05</span>
+<span class="text-label-sm font-label-sm uppercase tracking-wider">Sep</span>
+</div>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-sm group-hover:text-primary transition-colors">Inter-Parish Football Tournament</h3>
+<div class="flex items-center gap-xs text-on-surface-variant text-label-md font-label-md mb-md">
+<span class="material-symbols-outlined text-[18px]" data-icon="location_on">location_on</span>
+                            Muvattupuzha Stadium
+                        </div>
+<p class="text-body-md font-body-md text-on-surface-variant line-clamp-3 mb-lg">
+                            The biggest sporting event of the year! Gather your parish team and compete for the KCYM Ever-Rolling Trophy.
+                        </p>
+<div class="mt-auto">
+<button class="w-full py-sm rounded bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container hover:text-on-primary-container transition-colors text-center cursor-pointer">
+                                Register Team
+                            </button>
+</div>
+</div>
+</article>
+</div>
+<div class="flex justify-center mt-xl">
+<button class="px-lg py-sm rounded-full border border-surface-container-highest text-on-surface-variant hover:bg-surface-container-low hover:text-on-background transition-colors font-label-md text-label-md flex items-center gap-xs">
+                    Load More Events
+                    <span class="material-symbols-outlined text-[18px]" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+</section>
+<!-- Past Events -->
+<section class="bg-surface-container-low py-xxl border-t border-surface-container-highest">
+<div class="max-w-container-max mx-auto px-lg">
+<h2 class="font-headline-lg text-headline-lg text-on-surface-variant mb-lg flex items-center gap-sm opacity-80"><span class="material-symbols-outlined" data-icon="history">history</span>Past Events</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md opacity-75">
+<!-- Past Card 1 -->
+<div class="bg-surface-container-lowest rounded-lg border border-surface-container-highest p-md flex flex-col hover:opacity-100 transition-opacity cursor-pointer">
+<span class="text-label-sm font-label-sm text-on-surface-variant mb-xs">July 2024</span>
+<h4 class="font-headline-sm text-headline-sm text-on-background mb-sm">Leadership Training Camp</h4>
+<div class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-xs mt-auto">
+<span class="material-symbols-outlined text-[16px]" data-icon="imagesmode">imagesmode</span>
+                            View Gallery
+                        </div>
+</div>
+<!-- Past Card 2 -->
+<div class="bg-surface-container-lowest rounded-lg border border-surface-container-highest p-md flex flex-col hover:opacity-100 transition-opacity cursor-pointer">
+<span class="text-label-sm font-label-sm text-on-surface-variant mb-xs">June 2024</span>
+<h4 class="font-headline-sm text-headline-sm text-on-background mb-sm">Environment Day Tree Plantation</h4>
+<div class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-xs mt-auto">
+<span class="material-symbols-outlined text-[16px]" data-icon="imagesmode">imagesmode</span>
+                            View Gallery
+                        </div>
+</div>
+<!-- Past Card 3 -->
+<div class="bg-surface-container-lowest rounded-lg border border-surface-container-highest p-md flex flex-col hover:opacity-100 transition-opacity cursor-pointer">
+<span class="text-label-sm font-label-sm text-on-surface-variant mb-xs">May 2024</span>
+<h4 class="font-headline-sm text-headline-sm text-on-background mb-sm">Career Guidance Seminar</h4>
+<div class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-xs mt-auto">
+<span class="material-symbols-outlined text-[16px]" data-icon="article">article</span>
+                            Read Report
+                        </div>
+</div>
+<!-- Past Card 4 -->
+<div class="bg-surface-container-lowest rounded-lg border border-surface-container-highest p-md flex flex-col hover:opacity-100 transition-opacity cursor-pointer">
+<span class="text-label-sm font-label-sm text-on-surface-variant mb-xs">April 2024</span>
+<h4 class="font-headline-sm text-headline-sm text-on-background mb-sm">Easter Charity Visit</h4>
+<div class="text-label-sm font-label-sm text-on-surface-variant flex items-center gap-xs mt-auto">
+<span class="material-symbols-outlined text-[16px]" data-icon="imagesmode">imagesmode</span>
+                            View Gallery
+                        </div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto bg-surface-container-low dark:bg-surface-dim border-t border-outline-variant dark:border-outline"><div class="flex flex-col md:flex-row justify-between items-center py-lg px-lg max-w-container-max mx-auto"><div class="font-headline-md text-headline-md text-primary cursor-pointer transition-colors duration-200">KCYM</div><div class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant my-md md:my-0">© 2024 Kerala Catholic Youth Movement. All rights reserved.</div><nav class="flex gap-md font-label-md text-label-md"><a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200" href="#">Privacy Policy</a><a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200" href="#">Terms of Service</a><a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200" href="#">Contact Us</a><a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200" href="#">Sitemap</a></nav></div></footer>
+</body></html>
