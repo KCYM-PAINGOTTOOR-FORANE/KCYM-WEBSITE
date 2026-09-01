@@ -1,8 +1,13 @@
-import { Calendar } from 'lucide-react';
+import { Calendar, Megaphone } from 'lucide-react';
 import type { Metadata } from 'next';
-import { Section } from '@/components/layouts';
+import { BandSection, Section } from '@/components/layouts';
 import { siteConfig } from '@/config/site';
-import { PastEventsSection, UpcomingEventsSection } from '@/features/events';
+import {
+  AnnouncementsSection,
+  EventCalendar,
+  PastEventsSection,
+  UpcomingEventsSection,
+} from '@/features/events';
 import { constructMetadata } from '@/lib/metadata';
 
 export const metadata: Metadata = constructMetadata({
@@ -15,7 +20,7 @@ export const metadata: Metadata = constructMetadata({
 export default function EventsPage() {
   return (
     <>
-      <Section eager className="border-b border-line">
+      <Section className="border-b border-line">
         <h1 className="mb-md font-headline text-headline-xl text-ink">Events &amp; Activities</h1>
         <p className="max-w-2xl text-body-lg text-ink-muted">
           The forane&rsquo;s calendar — spiritual gatherings and social impact drives across all
@@ -23,11 +28,28 @@ export default function EventsPage() {
         </p>
       </Section>
 
+      <BandSection title="Announcements" variant="gold" />
+
       <Section>
         <h2 className="mb-lg flex items-center gap-sm font-headline text-headline-lg text-ink">
-          <Calendar className="size-6 text-accent" />
-          Upcoming Events
+          <Megaphone className="size-6 text-accent" />
+          Latest Announcements
         </h2>
+        <AnnouncementsSection />
+      </Section>
+
+      <BandSection title="Event Calendar" variant="ink" />
+
+      <Section variant="surface">
+        <h2 className="mb-lg flex items-center gap-sm font-headline text-headline-lg text-ink">
+          <Calendar className="size-6 text-accent" />
+          Upcoming on the Calendar
+        </h2>
+        <EventCalendar />
+      </Section>
+
+      <Section>
+        <h2 className="mb-lg font-headline text-headline-lg text-ink">All Upcoming Events</h2>
         <UpcomingEventsSection />
       </Section>
 

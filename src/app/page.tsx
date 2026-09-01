@@ -1,3 +1,4 @@
+import { BandSection } from '@/components/layouts';
 import { StatsSection } from '@/components/shared';
 import { pastEvents, upcomingEvents } from '@/features/events';
 import {
@@ -22,10 +23,20 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <StatsSection stats={stats} />
       <AboutSection />
       <ForaneIntroSection />
+      <BandSection
+        title="News & Activities"
+        variant="gold"
+        cta={{ label: 'View All', href: '/events' }}
+      />
+      <StatsSection stats={stats} />
       <ForaneLeadershipSection />
+      <BandSection
+        title="Our Parishes"
+        variant="ink"
+        cta={{ label: 'View All', href: '#parishes' }}
+      />
       <ParishesSection />
       <ActivitiesSection />
       <ConnectSection />

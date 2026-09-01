@@ -1,1 +1,1 @@
-export type { PastEvent, UpcomingEvent } from './event.types';
+export type { Announcement, PastEvent, UpcomingEvent } from './event.types';

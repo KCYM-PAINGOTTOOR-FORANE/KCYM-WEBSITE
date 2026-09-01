@@ -1,3 +1,9 @@
-export { EventCard, PastEventsSection, UpcomingEventsSection } from './components';
-export { getEventById, pastEvents, upcomingEvents } from './data';
-export type { PastEvent, UpcomingEvent } from './types';
+export {
+  AnnouncementsSection,
+  EventCalendar,
+  EventCard,
+  PastEventsSection,
+  UpcomingEventsSection,
+} from './components';
+export { announcements, getEventById, pastEvents, upcomingEvents } from './data';
+export type { Announcement, PastEvent, UpcomingEvent } from './types';

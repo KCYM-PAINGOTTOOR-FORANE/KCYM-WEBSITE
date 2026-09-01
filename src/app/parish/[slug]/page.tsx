@@ -1,9 +1,9 @@
-import { ArrowLeft, ArrowRight, Instagram } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Instagram, Users } from 'lucide-react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Section } from '@/components/layouts';
+import { BandSection, Section } from '@/components/layouts';
 import { StatsSection } from '@/components/shared';
 import { Tag } from '@/components/ui/tag';
 import { siteConfig } from '@/config/site';
@@ -40,7 +40,7 @@ export default async function ParishPage({ params }: ParishPageProps) {
 
   return (
     <>
-      <Section eager className="border-b border-line">
+      <Section className="border-b border-line">
         <Link
           href="/#parishes"
           className="mb-lg inline-flex items-center gap-sm font-heading-alt text-xs tracking-wide text-ink-muted uppercase transition-colors hover:text-accent"
@@ -55,7 +55,7 @@ export default async function ParishPage({ params }: ParishPageProps) {
             <h1 className="mt-md font-headline text-headline-lg-mobile text-ink md:text-headline-xl">
               {parish.name}
             </h1>
-            <p className="mt-sm max-w-xl text-body-lg text-ink-muted">{parish.tagline}</p>
+            <p className="mt-sm max-w-[36rem] text-body-lg text-ink-muted">{parish.tagline}</p>
           </div>
           <Image
             src={parish.heroImage}
@@ -68,6 +68,7 @@ export default async function ParishPage({ params }: ParishPageProps) {
       </Section>
 
       <StatsSection
+        title={`${parish.name} at a Glance`}
         stats={[
           { value: String(defaultUnitLeadership.length), label: 'Unit Leaders' },
           { value: String(upcomingEvents.length), label: 'Upcoming Events' },
@@ -89,11 +90,13 @@ export default async function ParishPage({ params }: ParishPageProps) {
         </div>
       </Section>
 
+      <BandSection title="Unit Leadership" variant={parish.accent === 'primary' ? 'ink' : 'gold'} />
+
       <Section variant="surface">
-        <h2 className="mb-sm font-headline text-headline-lg text-ink">Unit Leadership</h2>
-        <p className="mb-lg text-body-md text-ink-muted">
-          The team guiding this parish&rsquo;s youth.
-        </p>
+        <div className="mb-lg flex items-center gap-sm">
+          <Users className="size-5 text-accent" />
+          <p className="text-body-md text-ink-muted">The team guiding this parish&rsquo;s youth.</p>
+        </div>
         <RosterList members={defaultUnitLeadership} />
       </Section>
 

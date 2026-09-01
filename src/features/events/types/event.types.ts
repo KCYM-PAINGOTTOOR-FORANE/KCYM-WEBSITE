@@ -4,6 +4,7 @@ export interface UpcomingEvent {
   tag: string;
   tagIcon: string;
   date: string;
+  isoDate: string;
   day: string;
   month: string;
   location: string;
@@ -17,4 +18,12 @@ export interface PastEvent {
   period: string;
   linkLabel: string;
   linkIcon: string;
+}
+
+export interface Announcement {
+  id: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  tag: string;
 }

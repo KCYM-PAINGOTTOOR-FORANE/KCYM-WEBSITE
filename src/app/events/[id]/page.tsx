@@ -40,7 +40,7 @@ export default async function EventPage({ params }: EventPageProps) {
   const TagIcon = tagIconMap[event.tagIcon as keyof typeof tagIconMap] ?? Church;
 
   return (
-    <Section eager>
+    <Section>
       <div className="mx-auto max-w-2xl">
         <Link
           href="/events"

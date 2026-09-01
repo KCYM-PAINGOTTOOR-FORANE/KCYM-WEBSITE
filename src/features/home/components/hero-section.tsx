@@ -1,54 +1,74 @@
-import { ArrowRight, Calendar } from 'lucide-react';
+import { Calendar, Instagram, Mail, Users } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Section } from '@/components/layouts';
+import { siteConfig } from '@/config/site';
+
+const LOGO_URL =
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuCVZYTvIplMtqBvP05EgQDQsEi0Dl-pK7c8FjyP9lzlc5l1pJBITDckMwSQ_o0imt7v8e_MSohMq4qJLg6AmnyamF7j3AayYZOCNSldTdZdFKda0G338DaTrM_zlXxKpKZqoGk1mbPBAzBWry64VPa_1-gfXSMIOcJRTOZuhWd87Vq5TGORZ8eZp-XRJ1tPIWIZ_wEIldY_wVIYgyLDKwUAl1qsbRb8xpDMyegYqbiaFcO1oJGODtoDgs48xFgWP7B6YDE';
+const PATRON_URL =
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuCAuI_yMMyUnt5ijgu078xRIHA9xc4iBOJIggeZdHu9Tw92Pz0oHswNRjFVa6xix01TeoE_1K_n3rh8yTEgmuik_dUXpDbiy_GA06HbL0IRtuQgP922XIcDAgfwGpn-P3J_H0K1ONSAYkh0vipQSg-U72nRevmYt1DXZHTVjkDK_jJPzdRB0jejUc3PoZ9TtMhI8InHNBWlXd7CT_CDGCu2b0H8fXVE34UGrizaWLyDm7tSQr1jUGCk7tc7zbA-LbFwjIQ';
+
+const quickLinks = [
+  { label: 'View the Parishes', href: '#parishes', icon: Users },
+  { label: "This Year's Activities", href: '/events', icon: Calendar },
+  { label: 'Contact Us', href: '#connect', icon: Mail },
+  {
+    label: 'Follow on Instagram',
+    href: siteConfig.links.instagram,
+    icon: Instagram,
+    external: true,
+  },
+];
 
 export function HeroSection() {
   return (
-    <section className="relative flex min-h-screen w-full flex-col justify-end overflow-hidden bg-ink">
-      <div className="absolute inset-0">
-        <Image
-          src="https://images.unsplash.com/photo-1548509925-0e6d678d4615?q=80&w=2000&auto=format&fit=crop"
-          alt="Kerala Catholic church at golden hour"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/20" />
-      </div>
+    <Section className="border-b-2 border-gold/40 bg-surface-raised">
+      <div className="flex flex-col items-center gap-lg text-center">
+        <div className="flex items-center justify-center gap-lg">
+          <Image
+            src={LOGO_URL}
+            alt="KCYM Logo"
+            width={88}
+            height={88}
+            className="h-20 w-auto object-contain sm:h-24"
+          />
+          <div className="h-16 w-px bg-line-strong" />
+          <Image
+            src={PATRON_URL}
+            alt="St. Thomas More, patron of the forane"
+            width={88}
+            height={88}
+            className="h-20 w-20 rounded-full border-2 border-gold object-cover sm:h-24 sm:w-24"
+          />
+        </div>
 
-      <div className="relative px-6 pb-16 sm:px-8 lg:px-12">
-        <div className="w-full lg:w-2/3 xl:w-1/2">
-          <p className="mt-6 tracking-tighter text-paper">
-            <span className="font-heading-alt text-5xl font-medium sm:text-7xl">
-              Empowering youth to
-            </span>
-            <br />
-            <span className="font-headline text-6xl italic sm:text-8xl">Ignite &amp; Unite</span>
-          </p>
-          <p className="mt-8 max-w-xl text-body-md text-paper/70">
-            KCYM Paingottoor Forane — a vibrant community of young people united in faith, service,
-            and fellowship across seven parishes.
-          </p>
+        <h1 className="font-headline text-headline-lg-mobile text-ink md:text-headline-xl">
+          KCYM Paingottoor Forane
+        </h1>
+        <p className="max-w-2xl text-body-lg text-ink-muted">
+          Empowering the youth of Kerala through faith, service, and community fellowship — seven
+          parishes, united in the movement&rsquo;s call to Ignite &amp; Unite.
+        </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4">
-            <Link
-              href="#parishes"
-              className="inline-flex items-center justify-center rounded-full border-2 border-transparent bg-paper px-5 py-2 font-heading-alt text-base font-semibold text-ink transition-all hover:bg-opacity-90 sm:text-lg"
-            >
-              View the Parishes
-            </Link>
-            <Link
-              href="/events"
-              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-accent bg-transparent px-5 py-2 font-heading-alt text-base font-semibold text-paper transition-all hover:bg-paper hover:text-ink sm:text-lg"
-            >
-              <Calendar className="size-5" />
-              This Year&rsquo;s Activities
-              <ArrowRight className="size-4" />
-            </Link>
-          </div>
+        <div className="mt-md flex flex-wrap items-center justify-center gap-sm">
+          {quickLinks.map((link) => {
+            const Icon = link.icon;
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                target={link.external ? '_blank' : undefined}
+                rel={link.external ? 'noopener noreferrer' : undefined}
+                className="inline-flex items-center gap-xs border border-line-strong bg-surface px-md py-sm text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent"
+              >
+                <Icon className="size-4" />
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
