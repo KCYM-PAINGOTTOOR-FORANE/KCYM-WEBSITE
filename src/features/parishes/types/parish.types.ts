@@ -15,4 +15,5 @@ export interface LeadershipMember {
   name: string;
   role: string;
   accent: 'primary' | 'secondary' | 'tertiary';
+  image?: string;
 }

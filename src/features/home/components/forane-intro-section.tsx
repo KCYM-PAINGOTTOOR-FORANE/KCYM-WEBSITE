@@ -1,60 +1,67 @@
 import Image from 'next/image';
 import { Section } from '@/components/layouts';
+import { cn } from '@/lib/utils';
 
 const IMAGES = [
-  'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=1200&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1593113580327-024523d4e7d4?q=80&w=1200&auto=format&fit=crop',
+  '/forane%201.png',
+  '/forane%202.png',
+  '/forane%203.png',
+  '/forane4.jpeg',
+  '/forane5.png',
 ];
 
 export function ForaneIntroSection() {
   return (
-    <Section variant="surface">
-      <div className="grid grid-cols-1 items-center gap-xl lg:grid-cols-2">
-        <div className="flex flex-col items-start">
-          <h2 className="font-headline text-headline-lg text-ink">Our Forane</h2>
-          <p className="mt-md text-body-md text-ink-muted">
+    <Section variant="surface" className="py-24 overflow-hidden">
+      <div className="flex flex-col items-center gap-16 w-full max-w-6xl mx-auto">
+        {/* Scattered images showcasing the forane linearly */}
+        <div className="flex flex-wrap md:flex-nowrap justify-center items-center gap-4 sm:gap-8 w-full mt-8">
+          {IMAGES.map((src, index) => {
+            // Quirky rotations for each image in the line
+            const rotations = ['-rotate-6', 'rotate-3', '-rotate-2', 'rotate-6', '-rotate-3'];
+            const translateYs = [
+              'translate-y-4',
+              '-translate-y-4',
+              'translate-y-8',
+              '-translate-y-6',
+              'translate-y-2',
+            ];
+
+            return (
+              <div
+                key={src}
+                className={cn(
+                  'relative h-40 w-40 sm:h-56 sm:w-56 border-[10px] sm:border-[12px] border-white bg-surface shadow-2xl transition-all duration-300',
+                  'hover:rotate-0 hover:scale-110 hover:z-20 cursor-pointer shrink-0 z-10',
+                  rotations[index % rotations.length],
+                  translateYs[index % translateYs.length],
+                )}
+              >
+                <div className="relative h-full w-full">
+                  <Image
+                    src={src}
+                    alt={`Forane youth activity ${index + 1}`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Brief write up below */}
+        <div className="max-w-3xl text-center flex flex-col items-center mt-12 bg-white/50 backdrop-blur-sm p-8 rounded-3xl shadow-sm border border-white/40">
+          <h2 className="font-headline text-5xl text-ink font-bold mb-6 italic drop-shadow-sm transform -rotate-1">
+            Our Forane
+          </h2>
+          <div className="h-1 w-24 bg-accent mb-8 rounded-full" />
+          <p className="text-xl md:text-2xl text-ink-muted leading-relaxed font-body font-medium">
             Paingottoor Forane is a vibrant community of young people united in faith, fellowship,
-            and purpose — growing spiritually, leading with conviction, and serving our community
+            and purpose. Growing spiritually, leading with conviction, and serving our community
             across seven parishes. Carrying forward the spirit and vision of KCYM, we strive to be a
             generation rooted in faith and rising for change.
           </p>
-        </div>
-
-        <div className="relative h-[340px] w-full sm:h-[420px]">
-          <div className="absolute top-0 left-1/2 h-40 w-40 -translate-x-1/2 border border-line bg-surface p-2 sm:h-56 sm:w-56">
-            <div className="relative h-full w-full">
-              <Image
-                src={IMAGES[0]}
-                alt="KCYM youth gathering"
-                fill
-                sizes="224px"
-                className="object-cover"
-              />
-            </div>
-          </div>
-          <div className="absolute top-1/3 right-0 h-32 w-32 border border-line bg-surface p-2 sm:h-48 sm:w-48">
-            <div className="relative h-full w-full">
-              <Image
-                src={IMAGES[1]}
-                alt="Forane youth meet"
-                fill
-                sizes="192px"
-                className="object-cover"
-              />
-            </div>
-          </div>
-          <div className="absolute bottom-0 left-0 h-28 w-28 border border-line bg-surface p-2 sm:h-40 sm:w-40">
-            <div className="relative h-full w-full">
-              <Image
-                src={IMAGES[2]}
-                alt="Community service activity"
-                fill
-                sizes="160px"
-                className="object-cover"
-              />
-            </div>
-          </div>
         </div>
       </div>
     </Section>

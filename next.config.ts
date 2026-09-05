@@ -11,6 +11,12 @@ const nextConfig: NextConfig = {
         hostname: '**',
       },
     ],
+    localPatterns: [
+      {
+        pathname: '/**',
+        search: '',
+      },
+    ],
   },
 
   async headers() {
