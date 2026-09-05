@@ -66,16 +66,20 @@ export function ForaneLeadershipSection() {
   const getMembers = (role: string) =>
     filteredLeadership.filter((m) => m.role.toLowerCase().includes(role.toLowerCase()));
 
-  const row1 = [getMember('director'), getMember('asst director'), getMember('president')].filter(
-    Boolean,
-  ) as LeadershipMember[];
+  const row1 = (
+    [getMember('director'), getMember('asst director'), getMember('president')].filter(
+      Boolean,
+    ) as LeadershipMember[]
+  ).map((m) => ({ ...m, _id: `r1-${m.role}` }));
   const row2 = [
     getMember('vice president'),
     getMember('secretary'),
     getMember('joint secretary'),
     getMember('treasurer'),
-  ].filter(Boolean) as LeadershipMember[];
-  const row3 = getMembers('executive member');
+  ]
+    .filter(Boolean)
+    .map((m) => ({ ...(m as LeadershipMember), _id: `r2-${(m as LeadershipMember).role}` }));
+  const row3 = getMembers('executive member').map((m, i) => ({ ...m, _id: `r3-${m.name}-${i}` }));
 
   let portraitCounter = 0;
 
@@ -89,32 +93,36 @@ export function ForaneLeadershipSection() {
       <div className="flex flex-col gap-10 items-center max-w-6xl mx-auto">
         {/* Row 1: 3 items */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-10 w-full md:w-4/5 lg:w-3/4">
-          {row1.map((member, i) => (
+          {row1.map((member) => (
             <LeadershipCard
-              key={`r1-${i}`}
-              member={member}
-              portraitIndex={member.name !== 'To Be Announced' ? portraitCounter++ : 0}
+              key={member._id}
+              member={member as LeadershipMember}
+              portraitIndex={
+                (member as LeadershipMember).name !== 'To Be Announced' ? portraitCounter++ : 0
+              }
             />
           ))}
         </div>
 
         {/* Row 2: 4 items */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 w-full">
-          {row2.map((member, i) => (
+          {row2.map((member) => (
             <LeadershipCard
-              key={`r2-${i}`}
-              member={member}
-              portraitIndex={member.name !== 'To Be Announced' ? portraitCounter++ : 0}
+              key={member._id}
+              member={member as LeadershipMember}
+              portraitIndex={
+                (member as LeadershipMember).name !== 'To Be Announced' ? portraitCounter++ : 0
+              }
             />
           ))}
         </div>
 
         {/* Row 3: 4 items (Executives) */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 w-full">
-          {row3.map((member, i) => (
+          {row3.map((member) => (
             <LeadershipCard
-              key={`r3-${i}`}
-              member={member}
+              key={member._id}
+              member={member as LeadershipMember}
               portraitIndex={member.name !== 'To Be Announced' ? portraitCounter++ : 0}
             />
           ))}

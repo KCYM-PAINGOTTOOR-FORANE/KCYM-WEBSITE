@@ -3,7 +3,10 @@ import { ParishCard, parishes } from '@/features/parishes';
 
 export function ParishesSection() {
   // Duplicate the parishes array so the marquee can scroll seamlessly
-  const marqueeParishes = [...parishes, ...parishes];
+  const marqueeParishes = [
+    ...parishes.map((p) => ({ parish: p, _id: `${p.slug}-1` })),
+    ...parishes.map((p) => ({ parish: p, _id: `${p.slug}-2` })),
+  ];
 
   return (
     <Section id="parishes" variant="surface" className="py-24 overflow-hidden">
@@ -22,10 +25,10 @@ export function ParishesSection() {
         <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-surface to-transparent z-10" />
 
         <div className="flex gap-6 items-stretch w-max animate-marquee hover:[animation-play-state:paused] py-8 px-4">
-          {marqueeParishes.map((parish, index) => (
-            <div key={`${parish.slug}-${index}`} className="w-[280px] sm:w-[350px] shrink-0 flex">
+          {marqueeParishes.map((item) => (
+            <div key={item._id} className="w-[280px] sm:w-[350px] shrink-0 flex">
               <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow p-2 w-full flex flex-col border border-line/50">
-                <ParishCard parish={parish} />
+                <ParishCard parish={item.parish} />
               </div>
             </div>
           ))}

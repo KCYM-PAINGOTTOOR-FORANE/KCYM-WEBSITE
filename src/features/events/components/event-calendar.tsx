@@ -46,10 +46,12 @@ export function EventCalendar() {
   const firstOfMonth = new Date(viewYear, viewMonth, 1);
   const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
   const startWeekday = firstOfMonth.getDay();
-  const cells: (number | null)[] = [
-    ...Array.from({ length: startWeekday }, () => null),
-    ...Array.from({ length: daysInMonth }, (_, i) => i + 1),
-  ];
+  const cells = useMemo(() => {
+    return [
+      ...Array.from({ length: startWeekday }, (_, i) => ({ id: `empty-${i}`, day: null })),
+      ...Array.from({ length: daysInMonth }, (_, i) => ({ id: `day-${i + 1}`, day: i + 1 })),
+    ];
+  }, [startWeekday, daysInMonth]);
 
   const selectedEvents = selectedKey ? (eventsByDate.get(selectedKey) ?? []) : [];
 
@@ -99,14 +101,9 @@ export function EventCalendar() {
         </div>
 
         <div className="grid grid-cols-7">
-          {cells.map((day, index) => {
+          {cells.map(({ id, day }) => {
             if (day === null) {
-              return (
-                <div
-                  key={`empty-${index}`}
-                  className="aspect-square border-r border-b border-line"
-                />
-              );
+              return <div key={id} className="aspect-square border-r border-b border-line" />;
             }
             const key = toKey(viewYear, viewMonth, day);
             const dayEvents = eventsByDate.get(key) ?? [];

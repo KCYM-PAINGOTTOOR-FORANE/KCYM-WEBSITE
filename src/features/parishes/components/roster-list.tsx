@@ -15,17 +15,16 @@ interface RosterListProps {
 export function RosterList({ members }: RosterListProps) {
   let namedIndex = 0;
 
+  const membersWithId = members.map((m, i) => ({ ...m, _id: `${m.role}-${i}` }));
+
   return (
     <div className="grid grid-cols-2 gap-lg sm:grid-cols-3 lg:grid-cols-4">
-      {members.map((member, index) => {
+      {membersWithId.map((member) => {
         const isNamed = member.name !== 'To Be Announced';
         const portrait = isNamed ? PORTRAITS[namedIndex++ % PORTRAITS.length] : null;
 
         return (
-          <div
-            key={`${member.role}-${index}`}
-            className="overflow-hidden rounded-2xl bg-ink text-paper"
-          >
+          <div key={member._id} className="overflow-hidden rounded-2xl bg-ink text-paper">
             <div className="relative h-[200px] w-full overflow-hidden bg-white/5 sm:h-[240px]">
               {portrait ? (
                 <>
